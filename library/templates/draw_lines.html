@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="icon" href="{{ url_for('static', filename='Untitled-1.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
 
        marker:hover {
     	background-color: red;
@@ -23,9 +21,9 @@
       #map{
         height: 100%;
         max-height: 100%;
-
+        
       }
-      /* Optional: Makes the sample page fill the window. */
+      
       html, body {
         height: 100%;
         margin: 0;
@@ -33,16 +31,26 @@
       }
       .divlog{
     z-index:10;
-
-
-
+    
+    
+    
     position:relative;
     top: 0;
-
+    
     padding:5px 5px 5px 5px;
     background:transparent;
     background-color: rgba(242,241,240,1.0);
 
+      }
+
+      .swal-overlay {
+        background-color: rgba(43, 165, 137, 0.45);
+      }
+      .swal-title {
+        margin: 0px;
+        font-size: 16px;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+        margin-bottom: 28px;
       }
     </style>
     <script type="text/JavaScript">
@@ -51,74 +59,88 @@
                setTimeout("location.reload(true);", t);
             }
          //-->
+
+            
+
     </script>
   	</head>
   		<body onload="JavaScript:AutoRefresh(120000);">
+        <!-- 120000 -->
 
-  <div class="divlog" >
+  	<div class="divlog" >
       <div class="float-left">
-          <p ><b>LAST LOG STATION & TIME:</b>{{addr}}
+          <script type="text/javascript">
+            function alert() {
+               
+              swal('Page automaticallly refreshes every 2 minutes!Use the Green-car icon(Bottom-left) to get current point!');
+                
+            }
+
+          
+        </script>
+          <p ><b>LAST LOG STATION & TIME:</b>{{addr}} <a href="Javascript:alert();" class="fa fa-info"></a> 
           </p>
       </div>
-
-
+      <div>
+      <button type="submit" class="btn btn-sm btn-primary text-white float-right" onclick="window.location.href = '{{ url_for('logout')}}';">
+        <i class="fa fa-sign-out">Signout</i>
+      </button>
+    </div>
+           
       </div>
 
-
-
+      
+    
+      
     	<div class="col-lg-12 "id="map">
-
-
+       
+       
+      
       </div>
     	<script>
+        
 
-
+     
 
       function initMap() {
-
+        
         var map = new google.maps.Map(document.getElementById('map'),{
-          zoom: 13,
+          zoom: 15,
           center: {{lst}},
           mapTypeId: 'terrain',
           streetViewControl: false
         });
 
-
+      
         var flightPlanCoordinates = {{coord}};
         var myLatLng = {{lst}};
-
+   
         var i;
         var iconx = {
-        url:'http://maps.google.com/mapfiles/kml/paddle/blu-circle.png',
+        url:'https://maps.google.com/mapfiles/kml/paddle/blu-circle.png',
         scaledSize: new google.maps.Size(30,30)
         };
 
         //var story={{stry}}
 
       Strin = {{tymapx | tojson}}
-
-
+        
+      
      var i;
 
      for(i=0;i<(flightPlanCoordinates.length)-1;i++){
-
+      
       var infoWindowx = new google.maps.InfoWindow();
       var markerx = new google.maps.Marker({
           position: flightPlanCoordinates[i],
           map: map,
-
+          
           icon:iconx,
             title: 'log station!'
-
+         
         });
 
-        //var infowindowx = new google.maps.InfoWindow({
-        //   content:Strin[5]
-        // });
 
-        // markerx.addListener('click', function() {
-        //   infowindowx.open(map, markerx);
-        // });
 
         google.maps.event.addListener(markerx, 'click', (function(markerx, i) {
             return function() {
@@ -126,12 +148,7 @@
                 infoWindowx.open(map, markerx);
             }
         })(markerx, i));
-
-
-
-
-
-
+       
         }
 
 
@@ -149,10 +166,10 @@
           map: map,
           title: 'log station!',
           animation:google.maps.Animation.BOUNCE
-
+          
         });
 
-
+      
 
         marker.addListener('click', function() {
           infowindow.open(map, marker);
@@ -175,18 +192,16 @@
 
 
 
-
         var centerControlDiv = document.createElement('div');
         var centerControl = new CenterControl(centerControlDiv, map);
 
         centerControlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(centerControlDiv);
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(centerControlDiv);  
 
+  
 
-
-
-
-      }
+    
+      }  
 
 
 
@@ -214,15 +229,18 @@ controlUI.appendChild(controlText);
 controlUI.addEventListener('click', function() {
   //console.log('iconFetch');
   initMap();
-
+  
 });
          }
 
 
 
+
+
+         
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBomZqjzkNGH8jWT4ULH8R25NuluqhjUY&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA75X-cAEy8F5DnQp7ozkah-0A99ndqfJY&callback=initMap">
 
     </script>
   </body>

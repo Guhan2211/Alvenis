@@ -1,0 +1,382 @@
+<! DOCTYPE html>
+    <html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{ url_for('static', filename='Untitled-1.png')}}">
+
+        <title>ALVENIS</title>
+
+        <!-- start -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
+
+        <!-- Bootstrap styles -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!-- J-Query -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Popper Js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- Bootstrap Js -->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+        <!--sweet alert-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+           
+            $(window).load(function () {
+                $("#loader").fadeOut();
+            });
+        </script>
+        <!-- end -->
+        <style>
+            .swal-overlay {
+                    background-color: rgba(43, 165, 137, 0.45);
+                  }
+            .swal-title {
+                    margin: 0px;
+                    font-size: 16px;
+                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+                    margin-bottom: 28px;
+                  }
+            .no-js #loader {
+                display: none;
+            }
+
+            .js #loader {
+                display: block;
+                position: absolute;
+            }
+
+            #loader {
+                height: 100%;
+                width: 100%;
+                min-height: 720px;
+                z-index: 1000;
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+
+            body {
+                background-image: url("{{ url_for('static', filename='bus1.png')}}");
+                background-repeat: no-repeat;
+                position: fixed;
+            }
+            
+                .hidden-col-sm{
+                    
+                display: none;
+                }
+            @media only screen and (min-width: 768px) {
+                body {
+                    background-image: url('{{ url_for('static', filename='bus3.jpg')}}');
+             
+                }
+                .hidden-col-sm{
+                display: none;
+            }
+            }
+
+            @media only screen and (min-width: 1024px) {
+                body {
+                    background-image: url(('{{ url_for('static', filename='bus.png')}}');
+                }
+                .hidden-col-sm{
+                display: none;
+            }
+            }
+
+            @media only screen and (min-width: 1440px) {
+                body {
+                    background-image: url('{{ url_for('static', filename='buslap.png')}}');
+                }
+                .hidden-col-sm{
+                display: block;
+            }
+            }
+
+            @media only screen and (min-width: 2560px) {
+                body {
+                    background-image: url('{{ url_for('static', filename='bus4k.png')}}');
+                }
+                .hidden-col-sm{
+                display: block;
+            }   
+            }
+
+            .Credits {
+                position: relative;
+
+                color: white;
+                font-size: 15px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .wrapper-dropdown-3 {
+                position: relative;
+                width: 230px;
+                height: 100px;
+                margin: 0 auto;
+                padding: 10px;
+
+                
+                border-radius: 10px;
+                border: 1px solid rgba(0, 0, 0, 0);
+                box-shadow: 0 1px 1px rgba(50, 50, 50, 1.0);
+
+                outline: none;
+
+                font-weight: light;
+                font-family: consolas;
+                font-size: 10px;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .wrapper-dropdown-3:after {
+                
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                margin-top: -3px;
+                border-width: 6px 6px 0 6px;
+                border-style: solid;
+                border-color: #8ea5e6 transparent;
+            }
+            select:focus,form:focus,option:focus {
+                outline: #70d0e0 auto 1px;
+                outline-color: #70d0e0;
+                outline-style: auto;
+                outline-width: 1px;
+            }
+
+            .wrapper-dropdown-3.dropdown {
+                position: absolute;
+
+                left: 0;
+                right: 0;
+               
+                background: white;
+                border-radius: inherit;
+                border: 1px solid rgba(0, 0, 0, 0.17);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                font-weight: bold;
+                transition: all 0.5s ease-in;
+                list-style: none;
+
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .wrapper-dropdown-3.dropdown li a {
+                display: block;
+                padding: 10px;
+                text-decoration: none;
+                color: blue;
+                border-bottom: 1px solid #e6e8ea;
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+                transition: all 0.3s ease-out;
+            }
+
+            .wrapper-dropdown-3.dropdown li i {
+                float: right;
+                color: inherit;
+            }
+
+            .wrapper-dropdown-3.dropdown li:first-of-type a {
+                border-radius: 7px 7px 0 0;
+            }
+
+            .wrapper-dropdown-3.dropdown li:last-of-type a {
+                border-radius: 0 0 7px 7px;
+                border: none;
+            }
+
+            .wrapper-dropdown-3.dropdown li:hover a {
+                background: #f3f8f8;
+            }
+
+            .wrapper-dropdown-3.dropdown:after {
+                content: "";
+                width: 0;
+                height: 0;
+                position: absolute;
+                bottom: 100%;
+                right: 15px;
+                border-width: 0 6px 6px 6px;
+                border-style: solid;
+                border-color: #fff transparent;
+            }
+
+            .wrapper-dropdown-3.dropdown:before {
+                content: "";
+                width: 0;
+                height: 0;
+                position: absolute;
+                bottom: 100%;
+                right: 13px;
+                border-width: 0 8px 8px 8px;
+                border-style: solid;
+                border-color: rgba(0, 0, 0, 0.8) transparent;
+            }
+
+            .wrapper-dropdown-3.active.dropdown {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .textbox {
+                opacity: 1;
+                color: black;
+                background-color: #00A9A5;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: sego ui;
+                font-weight: bold;
+                opacity: 1.0;
+                background-color: rgba(65, 145, 246, 0.9);
+            }
+
+            .img1 {
+                -webkit-filter: grayscale(2%);
+                border-radius: 50%;
+            }
+
+            .btn-primary{
+                background-color:rgba(65, 145, 246, 0.9);
+            }
+           
+        </style>
+    </head>
+
+
+    <body class="container">
+        <!-- start -->
+
+        <!-- <div   id="loader"  class="container">             
+    <div class="col">         
+             <div class="row align-items-center mb-1">                       
+                <img   class="img-fluid"  src="alvenis3d_nw.gif"  alt="LOGO">                 
+            </div>                      
+    </div>         
+</div>
+ -->
+
+
+        <!-- end -->
+        <div class="row">
+             
+            <div class="ml-10 col-12 col-sm-12 col-md-6 col-lg-4">
+
+                <div style="margin-top: 40px;" class="w-100">
+
+
+                    <center>
+                        <img class="img1 mb-2" src="{{ url_for('static', filename='IMG_99.png')}}" style=" height:120px;width:120px;bottom:40px;right:0.6%;" />
+                        <h2 style="font-family:consolas;font-size:45px;color:white;bottom:145px;">
+                            <b style="color:white;">ALVENIS</b></h2>
+                    </center>
+                </div>
+               
+
+                <div style="bottom:250px;">
+
+                    <div id="dd" class="wrapper-dropdown-3" style="left:-3px;">
+
+                        <span style="font-family:consolas; font-size: 25px;">Bus Number</span>
+                        <form>
+                            <select class="textbox" name="dropdown_1" onchange="location=this.value;"
+                                style="position: relative;left:1px; bottom:-10px;height:30px; font-family: consolas,impact;font-size: 20px; width:200px; font-weight: bolder;">
+                                <option name="Bus 0">Select Bus.No</option>
+                                <!-- ['22','23','24','26','28','29','30','32'] -->
+                                <option name="Bus 22" value={{url_for('draw_lines', busNo='22')}}>Bus 22</option>
+                                <option name="Bus 23" value={{url_for('draw_lines', busNo='23')}}>Bus 23</option>
+                                <option name="Bus 24" value="/dummy/3">Bus 24</option>
+                                <option name="Bus 26" value="/dummy/3">Bus 26</option>
+                                <option name="Bus 28" value="/dummy/3">Bus 28</option>
+                                <option name="Bus 29" value="/dummy/3">Bus 29</option>
+                                <option name="Bus 30" value="/dummy/3">Bus 30</option>
+                                <option name="Bus 32" value="/dummy/3">Bus 32</option>
+                            </select>
+                        </form>
+                    </div>
+
+
+                    <div id="dd" class="wrapper-dropdown-3" style="position:relative;left:-3px;bottom:-10px">
+                        <span style="font-family:consolas; font-size: 25px;">Route</span>
+                        <form>
+                            <select class="textbox" name="dropdown_1" onchange="location=this.value;"
+                                style="position: relative;left:1px; bottom:-10px;height:30px; font-family: consolas,impact;font-size: 20px; width:200px; font-weight: bolder;">
+                                <option name="Bus 0">Select Bus Route</option>
+                                <option name="Bus 1" value={{url_for('draw_lines', busNo='22')}}>Kuniamuthur-Ramanathapuram</option>
+	                            <option name="Bus 1" value={{url_for('draw_lines', busNo='23')}}>Coimbatore-Chennai</option>
+                                <option name="Bus 1" value={{url_for('draw_lines', busNo='24')}}>Chennai-Malaysia</option>
+                                <option name="Bus 4" value="/dummy/3">Bus 3</option>
+                                <option name="Bus 5" value="/dummy/3">Bus 3</option>
+                                <option name="Bus 6" value="/dummy/3">Bus 3</option>
+                                <option name="Bus 7" value="/dummy/3">Bus 3</option>
+                                <option name="Bus 8" value="/dummy/3">Bus 3</option>
+                            </select>
+                        </form>
+                    </div>
+
+
+                
+
+                <div class="mt-3 mr-2" style="position: relative;bottom:-20%;left:75%;">
+                    <script type="text/javascript">
+                        function DisplayMultiLineAlert() {
+                            var newLine = "\r\n"
+                            var message = "Site Developed By...."
+                            message += newLine;
+                            message += "\t    Guhan"
+                            message += newLine;
+                            message += "\t    Manoj Kumar";   
+                            message += newLine;                         
+                            message += "\t    Nandha Gopalan";
+                            message += newLine;
+                            message += "\t    Daniel Jhosiah felips";
+                            message += newLine;
+                            message += "\t    Prince Wesly";
+                            message += newLine;
+                            message += "\t    S.Robin Salvatore";
+                           
+                            swal(message);
+                            //alert(message);
+                        }
+
+                      
+                    </script>
+                    <a href="{{ url_for('info')}}"
+                        style="font-family:consolas;font-size:20px;color:white;text-decoration: none;">CREDITS</a>
+                </div>
+                <div> 
+                   
+                  
+                 
+                    <button type="submit" class="btn btn-sm btn-primary text-white float-right m-2" onclick="window.location.href = '{{ url_for('logout')}}';"><i class="fa fa-sign-out">Signout</i>
+                    </button>
+             
+                </div>
+            </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 hidden-col-sm">
+                <img class="mb-5" src="{{ url_for('static', filename='Untitled-1.png')}}">
+            </div>
+            
+           
+        </div>
+
+      
+    </body>
+
+    </html>

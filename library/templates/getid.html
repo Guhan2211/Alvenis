@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="icon" href="{{ url_for('static', filename='Untitled-1.png')}}">
+        <title>
+            Alvenis
+        </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
+    </head>
+    <body  style="background-color: honeydew;">
+          <div class="container">
+              <h6 class="mb-50"> <a href={{url_for('basic')}}>Go back to home</a>  </h6>
+                        <form action="/pswdreset" method="POST"> 
+                            <h3>Enter your mail id to get a verification mail!</h3>
+                        <input type="email" name="email"  Placeholder="Email" required 
+                            class="form-control w-50"
+                            >
+                          
+                            <span style="width:50%; text-align:center;  display: inline-block;">
+                              <input  type="submit" name="submit" class="btn btn-primary mt-2"  value="Send verfication Email">
+                            </span>
+                        </form>	
+            
+              </div>
+
+          </div>
+    </body>
+</html>

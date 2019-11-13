@@ -1,0 +1,189 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='Untitled-1.png')}}">
+
+    <title>ALVENIS</title>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <style>
+  
+
+
+      body {
+        background-image: url("{{ url_for('static', filename='bus1.png')}}");
+        background-repeat: no-repeat;
+        position: fixed;
+    }
+    
+        .hidden-col-sm{
+            
+        display: none;
+        }
+    @media only screen and (min-width: 768px) {
+        body {
+            background-image: url('{{ url_for('static', filename='bus3.jpg')}}');
+     
+        }
+        .hidden-col-sm{
+        display: none;
+    }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        body {
+            background-image: url(('{{ url_for('static', filename='bus.png')}}');
+        }
+        .hidden-col-sm{
+        display: none;
+    }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        body {
+            background-image: url('{{ url_for('static', filename='buslap.png')}}');
+        }
+        .hidden-col-sm{
+        display: block;
+    }
+    }
+
+    @media only screen and (min-width: 2560px) {
+        body {
+            background-image: url('{{ url_for('static', filename='bus4k.png')}}');
+        }
+        .hidden-col-sm{
+        display: block;
+    }   
+    }
+
+
+  label{
+    color:white;
+  }
+
+  
+  .img1 {
+    -webkit-filter: grayscale(2%);
+    border-radius: 50%;
+}
+
+.swal-overlay {
+  background-color: rgba(43, 165, 137, 0.45);
+}
+.swal-title {
+  margin: 0px;
+  font-size: 16px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 28px;
+}
+</style>
+
+</head>
+
+<body class="container">
+
+<div class="row ">
+
+
+    <div class="ml-10 col-12 col-sm-12 col-md-6 col-lg-4">
+
+      
+        <div style="margin-top: 50px;" >
+
+
+            <center>
+                <img class="img1 mb-2" src="{{ url_for('static', filename='IMG_99.png')}}" style=" height:120px;width:120px;bottom:40px;right:0.6%;" />
+                <h2 style="font-family:consolas;font-size:45px;color:white;bottom:145px;">
+                    <b style="color:white;"><i class="fa fa-map-marker"></i> ALVENIS</b></h2>
+            </center>
+        </div>
+               
+      
+        <div style="bottom:250px;">
+        <div class="text-warning">
+          {%    if us  %}
+        {{us}}
+
+        {% endif%}
+        </div>
+        
+          <form class="login-form" action="/" method="POST">
+            
+            <div class="form-group mb-2">
+              
+              <label for="email"><span class="fa fa-envelope text-white"></span> Email</label>
+              <input 
+              required
+              placeholder="alvenis@gmail.com"
+              type="email" name="email" 
+              class="form-control">
+              
+            </div>
+            
+            <div class="form-group mb-2">
+               
+              <label for="password"> <span class="fa fa-lock text-white"></span> Password</label>
+              <input placeholder="********" type="password" 
+              class="form-control"
+              name="password" required>
+            </div>
+            <input type="submit" name="submit" value="Login" class="btn btn-primary btn-block">
+            <a href="{{ url_for('getid')}}">Forgot password?</a>
+          </form>
+
+
+
+      
+
+          <div class=" mr-2" style="position: relative;bottom:-20%;left:75%;">
+              <script type="text/javascript">
+                  function DisplayMultiLineAlert() {
+                      var newLine = "\r\n"
+                      var message = "Site Developed By...."
+                      message += newLine;
+                      message += "\t    Guhan"
+                      message += newLine;
+                      message += "\t    Manoj Kumar";   
+                      message += newLine;                         
+                      message += "\t    Nandha Gopalan";
+                      message += newLine;
+                      message += "\t    Daniel Jhosiah felips";
+                      message += newLine;
+                      message += "\t    Prince Wesly";
+                      message += newLine;
+                      message += "\t    S.Robin Salvatore";
+                     
+                      swal(message);
+                      //alert(message);
+                  }
+    
+                
+              </script>
+              <a href="{{ url_for('info')}}"
+                  style="font-family:consolas;font-size:20px;color:white;text-decoration: none;">CREDITS</a>
+          </div>
+
+          </div>
+          
+       </div>
+
+       <div class="col-12 col-sm-12 col-md-6 col-lg-4 hidden-col-sm">
+          <img class="mb-5" src="{{ url_for('static', filename='Untitled-1.png')}}">
+      </div>
+
+  </div>
+              
+
+</body>
+
+
+</html>

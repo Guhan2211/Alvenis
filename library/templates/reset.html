@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link rel="icon" href="{{ url_for('static', filename='Untitled-1.png')}}">
+
+        <title>ALVENIS</title>
+    
+    <style>
+        .success{
+                color:green;
+        }
+        .fail{
+            color:red;
+        }
+    </style>
+</head>
+<body> 
+    <a href={{url_for('basic')}}>Go back to home</a>
+       {% if inf=="succ" %}
+        <h1 class="success">SUCCESS!</h1>
+        <h2 class="success">{{message}}</h2>
+        
+    {% elif inf=="fail" %}
+    <h1 class="fail">ERROR!!</h1>
+       <h2 class="fail">{{message}}</h2>
+
+    {% endif %} 
+</body>
+
+</html>
+
