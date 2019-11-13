@@ -1,45 +1,50 @@
-from flask import Flask
-from flask import render_template,abort
+from flask import *
 import sys
+import os
 
 import library.alias as ali
 import library.logSession as logs
-from flask import *
-app=Flask(__name__) 
 
+app=Flask(__name__) 
+app.secret_key=os.urandom(24)
 busList=['22','23','24','26','28','29','30','32']
-sessobj=None
+
 
 
 @app.route('/',methods=['GET','POST'])
 
 
 def basic():
-
-
-    global sessobj
-    if(not sessobj):
+    
+    if not g.user:
         if (request.method =='POST'):
+            session.pop ('user',None)
             email=request.form['email']
+            
             password=request.form['password']
 
 
             sessobj=logs.session(email,password)
-            if(sessobj.loggedIn==False):
-                auth_check=sessobj.login()
-                if (auth_check is None and sessobj.loggedIn):
-                    
-                    return render_template('start_Nandha.html')
-                else:
-
-                    return render_template('homepage.html',us=auth_check)
+            
+            auth_check=sessobj.login()
+            if (auth_check is None and sessobj.loggedIn):
+                session['user']=email
+                return redirect(url_for('select')) 
             else:
-                return render_template('start_Nandha.html')  
-    elif(sessobj.loggedIn):
-        return render_template('start_Nandha.html')
+                return render_template('homepage.html',us=auth_check)
+        
 
-                
-    return render_template('homepage.html')
+        return render_template('homepage.html')
+    else:
+        return redirect(url_for('select')) 
+        
+
+@app.route('/getUsers')
+def getUsers():
+    if g.user:
+        if 'user' in session:
+            return session['user']
+
 
 @app.route('/getid')
 def getid():
@@ -65,43 +70,54 @@ def pswdreset():
         return render_template('reset.html',message=message,inf=inf)
 
 
-    
+@app.route('/select')
+def select():
+    if g.user:
+        return render_template('start_Nandha.html')   
 
 
 @app.route('/<busNo>')
 
 def draw_lines(busNo):
 
-    global sessobj
-    if busNo not in busList:
-        abort(404) 
-    print("Reloading occurrs!")
-    obj=""
-    del sys.modules['library.alias']
-    del obj
-    import library.alias as ali
-    
-    obj=ali.data(busNo)
-    try:
-        obj.initdata()
-    except:
-        abort(400)
+
     #-------------------------------------------------------
     #print(busNo)
-    if(sessobj):
-        if(sessobj.loggedIn):
-            return render_template('draw_lines.html', coord=obj.lis,
-                                    lst=obj.lastcord,addr=obj.info,tymapx=obj.tymapx)
+    if g.user:
+    
+        if busNo not in busList:
+            abort(404) 
+        print("Reloading occurrs!")
+        obj=""
+        del sys.modules['library.alias']
+        del obj
+        import library.alias as ali
+        
+        obj=ali.data(busNo)
+        try:
+            obj.initdata()
+        except:
+            abort(400)        
+        
+        return render_template('draw_lines.html', coord=obj.lis,
+                                lst=obj.lastcord,addr=obj.info,tymapx=obj.tymapx)
     else:
         abort(401)
 
 
+
+@app.before_request
+def before_request():
+    g.user=None
+    if 'user' in session:
+        g.user=session['user']
+
+
 @app.route('/logout')
 def logout():
-    global sessobj
-    #print("Logout")
-    #sessobj.loggedIn=False
-    sessobj=None
+    session.pop('user',None)
+   
+
     return redirect(url_for('basic'))
     
 @app.route('/info')
