@@ -1,0 +1,7 @@
+post:
+
+https://api.thingspeak.com/update?api_key=VPJIUIG40BV2JPNQ&field1=11.052912&field2=77.046547
+
+get:
+
+https://api.thingspeak.com/channels/600627/feeds.json?minutes=180

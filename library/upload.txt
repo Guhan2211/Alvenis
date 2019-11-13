@@ -1,3 +1,7 @@
+GET:
+    r = http.request('GET', 'https://api.thingspeak.com/channels/591147/feeds.json?results=100')#results=100,days=1,minutes=180
+
+
 LATITUDE:
 
 https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field1=11.056062
@@ -5,11 +9,13 @@ https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field1=11.056062
 LONGITUDE:
 
 https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field2=77.046547
-11.054365, 77.063677
+11.052913, 77.061461
 BOTH:
 
-https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field1=11.054365&field2=77.063677
-
+https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field1=11.059398&field2=77.087353
+11.058300, 77.078396
+11.058779, 77.079533
+11.059398, 77.087353
 Dummies:
 
 https://api.thingspeak.com/update?api_key=5YDW2I7C3BN6YCV4&field1=11.000462&field2=77.028232
