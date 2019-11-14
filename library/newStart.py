@@ -8,14 +8,14 @@ import library.logSession as logs
 app=Flask(__name__) 
 app.secret_key=os.urandom(24)
 busList=['22','23','24','26','28','29','30','32']
-
+active_users=[]
 
 
 @app.route('/',methods=['GET','POST'])
 
 
 def basic():
-    
+    global active_users
     if not g.user:
         if (request.method =='POST'):
             session.pop ('user',None)
@@ -29,6 +29,7 @@ def basic():
             auth_check=sessobj.login()
             if (auth_check is None and sessobj.loggedIn):
                 session['user']=email
+                active_users.append(email)
                 return redirect(url_for('select')) 
             else:
                 return render_template('homepage.html',us=auth_check)
@@ -41,9 +42,12 @@ def basic():
 
 @app.route('/getUsers')
 def getUsers():
+    global active_users
     if g.user:
-        if 'user' in session:
-            return session['user']
+        return render_template("getUsers.html",active_users=active_users,length=len(active_users)) 
+
+
+
 
 
 @app.route('/getid')
@@ -115,6 +119,9 @@ def before_request():
 
 @app.route('/logout')
 def logout():
+    global active_users
+    print(g.user,type(g.user))
+    active_users.remove(g.user)
     session.pop('user',None)
    
 
@@ -125,8 +132,6 @@ def logout():
 def info():
     return render_template('credits.html')
 
-       
-    
 
 
 @app.errorhandler(404)
