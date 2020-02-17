@@ -4,14 +4,14 @@
 #include "ThingSpeak.h"
 
 // WiFi parameters to be configured
-const char* ssid = "Thilaga";
-const char* password = "99019307";
+const char* ssid = "***";
+const char* password = "**";
 int RXPin = 4;
 int TXPin = 5;
 int GPSBaud = 9600;
 
 unsigned long myChannelNumber = 600627;
-const char * myWriteAPIKey = "VPJIUIG40BV2JPNQ";
+const char * myWriteAPIKey = "V*****Q";
 
 
 WiFiClient  client;
