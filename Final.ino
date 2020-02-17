@@ -7,13 +7,13 @@ static const int RXPin = 4, TXPin = 5;
 static const uint32_t GPSBaud = 9600;
 
 
-const char* ssid     = "gkmmano";
-const char* password = "13gkmmano";
+const char* ssid     = "**";
+const char* password = "***";
 
 unsigned long myChannelNumber = 600627;
 //const char * myWriteAPIKey = "VPJIUIG40BV2JPNQ";
 const char* server = "api.thingspeak.com";
-String apiKey = "VPJIUIG40BV2JPNQ";     //  Enter your Write API key from ThingSpeak
+String apiKey = "*****";     //  Enter your Write API key from ThingSpeak
 
 TinyGPSPlus gps;
 WiFiClient  client;
